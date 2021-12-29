@@ -3,10 +3,11 @@ Advent of Code 2015 - Day 01
 https://adventofcode.com/2021/day/01
 """
 
+from pathlib import Path
 from typing import List
 
-FULL_INPUT_FILE = f'input.full.txt'
-TEST_INPUT_FILE = f'input.test.txt'
+FULL_INPUT_FILE = Path(__file__).parent / 'input.full.txt'
+TEST_INPUT_FILE = Path(__file__).parent / 'input.test.txt'
 DEFAULT_INPUT_FILE = FULL_INPUT_FILE
 
 
