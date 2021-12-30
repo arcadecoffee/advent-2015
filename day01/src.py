@@ -3,28 +3,22 @@ Advent of Code 2015 - Day 01
 https://adventofcode.com/2021/day/01
 """
 
-import sys
+from itertools import accumulate, takewhile, tee
 from pathlib import Path
-file = Path(__file__).resolve()
-sys.path.append(str(file.parent.parent))
-
-import common
 from typing import Tuple
 
-FULL_INPUT_FILE = file.parent / 'input.full.txt'
-TEST_INPUT_FILE = file.parent / 'input.test.txt'
+mypath = Path(__file__).resolve().parent
+FULL_INPUT_FILE = mypath / 'input.full.txt'
+TEST_INPUT_FILE = mypath / 'input.test.txt'
 DEFAULT_INPUT_FILE = FULL_INPUT_FILE
 
 
 def count_floors(directions: str) -> Tuple[int, int]:
-    basement = None
-    current_floor = 0
-    for i in range(len(directions)):
-        current_floor += 1 if directions[i] == '(' else -1
-        if not basement and current_floor == -1:
-            basement = i + 1
-        common.print_progress_bar(len(directions) - 1, i)
-    return current_floor, basement
+    iterators = tee([-1 if _ == ')' else 1 for _ in directions], 2)
+    final = sum(iterators[0])
+    basement = 1 + sum([1 for _ in 
+        takewhile(lambda x: x > -1, accumulate(iterators[1]))])
+    return final, basement
 
 
 def load_data(input_file: str) -> str:
