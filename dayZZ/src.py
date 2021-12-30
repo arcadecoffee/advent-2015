@@ -5,8 +5,9 @@ https://adventofcode.com/2021/day/ZZ
 
 from pathlib import Path
 
-FULL_INPUT_FILE = Path(__file__).parent / 'input.full.txt'
-TEST_INPUT_FILE = Path(__file__).parent / 'input.test.txt'
+__mypath = Path(__file__).resolve().parent
+FULL_INPUT_FILE = __mypath / 'input.full.txt'
+TEST_INPUT_FILE = __mypath / 'input.test.txt'
 DEFAULT_INPUT_FILE = FULL_INPUT_FILE
 
 

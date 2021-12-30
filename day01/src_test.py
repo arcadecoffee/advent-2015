@@ -1,5 +1,6 @@
 import day01.src as src
 
+
 def test_count_floors_part_1():
     assert src.count_floors('(())')[0] == 0
     assert src.count_floors('()()')[0] == 0

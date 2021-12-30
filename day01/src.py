@@ -7,9 +7,9 @@ from itertools import accumulate, takewhile, tee
 from pathlib import Path
 from typing import Tuple
 
-mypath = Path(__file__).resolve().parent
-FULL_INPUT_FILE = mypath / 'input.full.txt'
-TEST_INPUT_FILE = mypath / 'input.test.txt'
+__mypath = Path(__file__).resolve().parent
+FULL_INPUT_FILE = __mypath / 'input.full.txt'
+TEST_INPUT_FILE = __mypath / 'input.test.txt'
 DEFAULT_INPUT_FILE = FULL_INPUT_FILE
 
 
