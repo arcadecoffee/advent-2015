@@ -1,6 +1,6 @@
 """
 Advent of Code 2015 - Day 01
-https://adventofcode.com/2021/day/01
+https://adventofcode.com/2015/day/1
 """
 
 from itertools import accumulate, takewhile, tee

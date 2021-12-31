@@ -1,6 +1,6 @@
 """
 Advent of Code 2015 - Day ZZ
-https://adventofcode.com/2021/day/ZZ
+https://adventofcode.com/2015/day/ZZ
 """
 
 from pathlib import Path

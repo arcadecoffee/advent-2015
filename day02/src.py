@@ -1,6 +1,6 @@
 """
 Advent of Code 2015 - Day 02
-https://adventofcode.com/2021/day/02
+https://adventofcode.com/2015/day/2
 """
 
 from math import prod
