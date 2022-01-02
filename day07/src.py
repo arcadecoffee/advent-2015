@@ -3,8 +3,6 @@ Advent of Code 2015 - Day 7
 https://adventofcode.com/2015/day/7
 """
 
-import re
-from functools import lru_cache
 from pathlib import Path
 from typing import List
 
@@ -30,18 +28,20 @@ class Circuit:
         left, right = instruction.split(' -> ')
         self._wires[right] = left
 
-    @lru_cache
     def wire(self, wire_id: str):
         if wire_id.isdigit():
             return int(wire_id)
+        elif type(self._wires[wire_id]) == int:
+            return self._wires[wire_id]
         else:
             parts = self._wires[wire_id].split(' ')
             if len(parts) == 1:
-                return self.wire(parts[0])
+                self._wires[wire_id] = self.wire(parts[0])
             elif len(parts) == 2:
-                return ~ self.wire(self._wires[wire_id].split(' ')[1]) + (1 << 16)
+                self._wires[wire_id] = ~ self.wire(self._wires[wire_id].split(' ')[1]) + (1 << 16)
             elif len(parts) == 3:
-                return self._operation_map[parts[1]](parts[0], parts[2])
+                self._wires[wire_id] = self._operation_map[parts[1]](parts[0], parts[2])
+            return int(self._wires[wire_id])
 
 
 def load_data(input_file: str) -> List[str]:
@@ -62,8 +62,9 @@ def part1(input_file: str = DEFAULT_INPUT_FILE):
 
 
 def part2(input_file: str = DEFAULT_INPUT_FILE):
-    data = load_data(input_file)
-    return 0
+    c = build_circuit(load_data(input_file))
+    c._wires['b'] = '956'
+    return c.wire('a')
 
 
 if __name__ == '__main__':
