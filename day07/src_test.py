@@ -1,12 +1,8 @@
 import day07.src as src
 
 
-def test_part1():
-    assert src.part1(src.TEST_INPUT_FILE) == 1
-
-
 def test_part1_full():
-    assert src.part1(src.FULL_INPUT_FILE) == 1
+    assert src.part1(src.FULL_INPUT_FILE) == 956
 
 
 def test_part2():
