@@ -16,13 +16,13 @@ DEFAULT_INPUT_FILE = FULL_INPUT_FILE
 
 def decode_string(s: str) -> str:
     translations = {
-        r'\\\\': '\\',
-        r'\\"': '"',
+        r'\\\\': lambda l: '\\',
+        r'\\"': lambda l: '"',
         r'\\x..': lambda l: chr(int(l.group(0)[2:], 16))
     }
+    s = s[1: -1]
     return re.compile('|'.join(translations.keys())).sub(
-        lambda l: translations[r'\\x..'](l) if l.group(0).startswith('\\x') else
-        translations[re.escape(l.group(0))], s[1:-1])
+        lambda l: [translations[t](l) for t in translations if re.match(t, l.group(0))][0], s)
 
 
 def encode_string(s: str) -> str:
