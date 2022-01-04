@@ -20,15 +20,7 @@ def load_data(input_file: str) -> str:
 
 def look_and_say(look: str, cycles: int = 5):
     for _ in range(cycles):
-        say = ''
-        offset = 0
-        while offset < len(look):
-            print(f'\r{_}: {len(look) - offset}', end='')
-            end = re.match(r'^(.)\1*', look[offset:]).end()
-            say += f'{end}{look[offset]}'
-            offset += end
-        look = say
-    print('\r', end='')
+        look = re.sub(r'(\d)\1*', lambda l: str(len(l.group())) + l.group()[0], look)
     return look
 
 
