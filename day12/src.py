@@ -3,27 +3,29 @@ Advent of Code 2015 - Day 12
 https://adventofcode.com/2015/day/12
 """
 
+import json
 from pathlib import Path
+from typing import Dict, List, Union
 
 __mypath = Path(__file__).resolve().parent
-FULL_INPUT_FILE = __mypath / 'input.full.txt'
-TEST_INPUT_FILE = __mypath / 'input.test.txt'
-DEFAULT_INPUT_FILE = FULL_INPUT_FILE
+DEFAULT_INPUT_FILE = __mypath / 'input.full.txt'
 
 
-def load_data(input_file: str) -> str:
-    with open(input_file) as f:
-        return f.readline().strip()
+def sum_numbers(data: Union[Dict, List], skip_red: bool = False) -> int:
+    total = 0
+    for item in data if type(data) == list \
+            else data.values() if type(data) == dict and not (skip_red and 'red' in data.values()) \
+            else []:
+        total += item if type(item) == int else sum_numbers(item, skip_red)
+    return total
 
 
-def part1(input_file: str = DEFAULT_INPUT_FILE):
-    data = load_data(input_file)
-    return 0
+def part1(input_file: str = DEFAULT_INPUT_FILE) -> int:
+    return sum_numbers(json.load(open(input_file)))
 
 
 def part2(input_file: str = DEFAULT_INPUT_FILE):
-    data = load_data(input_file)
-    return 0
+    return sum_numbers(json.load(open(input_file)), True)
 
 
 if __name__ == '__main__':
