@@ -32,12 +32,12 @@ def optimize_table(data: Dict[str, Dict[str, int]]):
     def right(n: int, size: int):
         return (n - 1) if n > 0 else (size - 1)
 
-    best = None
+    best = 0
     for s in permutations(list(data)[1:], len(data) - 1):
         s += list(data)[0],
         curr = sum([data[s[i]][s[left(i, len(s))]] + data[s[i]][s[right(i, len(s))]]
                     for i in range(len(s))])
-        best = curr if not best or curr > best else best
+        best = curr if curr > best else best
     return best
 
 
@@ -47,7 +47,9 @@ def part1(input_file: str = DEFAULT_INPUT_FILE):
 
 def part2(input_file: str = DEFAULT_INPUT_FILE):
     data = load_data(input_file)
-    return 0
+    data = {k: {**data[k], **{'me': 0}} for k in data}
+    data['me'] = {k: 0 for k in data}
+    return optimize_table(data)
 
 
 if __name__ == '__main__':
