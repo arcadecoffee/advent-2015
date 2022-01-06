@@ -11,7 +11,7 @@ from typing import Dict, List
 
 __mypath = Path(__file__).resolve().parent
 FULL_INPUT_FILE = __mypath / 'input.full.txt'
-TEST_INPUT_FILE = __mypath / 'input.test.txt'
+TEST_INPUT_FILE = __mypath / 'input.test1.txt'
 DEFAULT_INPUT_FILE = FULL_INPUT_FILE
 
 
