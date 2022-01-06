@@ -6,7 +6,7 @@ def test_part1():
 
 
 def test_part1_full():
-    assert src.part1(src.FULL_INPUT_FILE) == 0
+    assert src.part1(src.FULL_INPUT_FILE) == 509
 
 
 def test_part2():
