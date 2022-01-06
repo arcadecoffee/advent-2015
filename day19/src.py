@@ -1,6 +1,6 @@
 """
-Advent of Code 2015 - Day ZZ
-https://adventofcode.com/2015/day/ZZ
+Advent of Code 2015 - Day 19
+https://adventofcode.com/2015/day/19
 """
 
 from pathlib import Path
@@ -18,12 +18,12 @@ def load_data(input_file: str) -> str:
 
 def part1(input_file: str = DEFAULT_INPUT_FILE):
     data = load_data(input_file)
-    return 0
+    return -1
 
 
 def part2(input_file: str = DEFAULT_INPUT_FILE):
     data = load_data(input_file)
-    return 0
+    return -1
 
 
 if __name__ == '__main__':
