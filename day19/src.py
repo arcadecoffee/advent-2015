@@ -39,7 +39,7 @@ def part1(input_file: str = DEFAULT_INPUT_FILE):
 
 
 def part2(input_file: str = DEFAULT_INPUT_FILE):
-    data = load_data(input_file)
+    molecule, replacements = load_data(input_file)
     return -1
 
 
