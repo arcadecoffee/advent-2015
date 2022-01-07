@@ -14,4 +14,4 @@ def test_part2():
 
 
 def test_part2_full():
-    assert src.part2(src.FULL_INPUT_FILE) == 0
+    assert src.part2(src.FULL_INPUT_FILE) == 195
