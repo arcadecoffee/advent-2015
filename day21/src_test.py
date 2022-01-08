@@ -10,8 +10,8 @@ def test_part1_full():
 
 
 def test_part2():
-    assert src.part2(src.TEST_INPUT_FILE) == 0
+    assert src.part2(src.TEST_INPUT_FILE, 8) == 188
 
 
 def test_part2_full():
-    assert src.part2(src.FULL_INPUT_FILE) == 0
+    assert src.part2(src.FULL_INPUT_FILE) == 148
