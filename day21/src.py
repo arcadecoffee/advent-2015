@@ -5,7 +5,10 @@ https://adventofcode.com/2015/day/21
 
 import collections
 import itertools
+import math
 import pathlib
+
+from typing import List
 
 __mypath = pathlib.Path(__file__).resolve().parent
 FULL_INPUT_FILE = __mypath / 'input.full.txt'
@@ -43,22 +46,29 @@ RINGS = [
     Item('Defense +3', 80, 0, 3),
 ]
 
+RING_COMBOS = [(RINGS[0], RINGS[0])] + list(itertools.combinations(RINGS, 2))
 
-def load_data(input_file: str) -> str:
+def load_data(input_file: str) -> List[int]:
     with open(input_file) as f:
-        return f.readline().strip()
+        return [int(l.strip().split(' ')[-1]) for l in f]
 
 
-def part1(input_file: str = DEFAULT_INPUT_FILE) -> int:
+def find_cheapest_wardrobe(boss_hp, boss_damage, boss_armor, player_hp):
+    lowest_cost = None
+    for gear in itertools.product(WEAPONS, ARMOR, RING_COMBOS):
+        gear_cost, player_damage, player_armor = (
+            sum(i) for i in list(zip(gear[0], gear[1], *gear[2]))[1:])
+        boss_win_rounds = math.ceil(player_hp / max(1, boss_damage - player_armor))
+        player_win_rounds = math.ceil(boss_hp / max(1, player_damage - boss_armor))
+        if player_win_rounds <= boss_win_rounds and (not lowest_cost or gear_cost < lowest_cost):
+            lowest_cost = gear_cost
+    return lowest_cost
+
+
+def part1(input_file: str = DEFAULT_INPUT_FILE, player_hp: int = 100) -> int:
     data = load_data(input_file)
-    ring_combos = [(RINGS[0], RINGS[0])] + list(itertools.combinations(RINGS, 2))
-    for wardrobe in itertools.product(WEAPONS, ARMOR, ring_combos):
-        total_cost, total_damage, total_armor = (
-            sum(i) for i in list(zip(wardrobe[0], wardrobe[1], *wardrobe[2]))[1:])
-
-
-        x = 0
-    return -1
+    lowest_cost = find_cheapest_wardrobe(*data, player_hp)
+    return lowest_cost
 
 
 def part2(input_file: str = DEFAULT_INPUT_FILE) -> int:
