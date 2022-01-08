@@ -2,7 +2,7 @@ import day21.src as src
 
 
 def test_part1():
-    assert src.part1(src.TEST_INPUT_FILE) == 0
+    assert src.part1(src.TEST_INPUT_FILE) == 103
 
 
 def test_part1_full():
