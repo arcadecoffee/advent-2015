@@ -47,7 +47,8 @@ def part1(input_file: str = DEFAULT_INPUT_FILE) -> int:
 
 def part2(input_file: str = DEFAULT_INPUT_FILE) -> int:
     data = load_data(input_file)
-    return -1
+    good_combos = find_good_combos(data, int(sum(data) / 4))
+    return min([math.prod(c) for c in good_combos])
 
 
 if __name__ == '__main__':
