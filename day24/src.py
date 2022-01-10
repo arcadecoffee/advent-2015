@@ -39,6 +39,17 @@ def find_good_combos(data: List[int], target: int):
     return combos
 
 
+def find_good_combos_part2(data: List[int], target: int):
+    combos = []
+    set_size = 1
+    while not combos and set_size < len(data):
+        for c in itertools.combinations(data, set_size):
+            if sum(c) == target and find_good_combos([d for d in data if d not in c], target):
+                combos.append(c)
+        set_size += 1
+    return combos
+
+
 def part1(input_file: str = DEFAULT_INPUT_FILE) -> int:
     data = load_data(input_file)
     good_combos = find_good_combos(data, int(sum(data) / 3))
@@ -47,7 +58,7 @@ def part1(input_file: str = DEFAULT_INPUT_FILE) -> int:
 
 def part2(input_file: str = DEFAULT_INPUT_FILE) -> int:
     data = load_data(input_file)
-    good_combos = find_good_combos(data, int(sum(data) / 4))
+    good_combos = find_good_combos_part2(data, int(sum(data) / 4))
     return min([math.prod(c) for c in good_combos])
 
 
